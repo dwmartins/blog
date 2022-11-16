@@ -9,6 +9,33 @@
             $this->mysql = $mysqli;
         }
 
+        //Adicionando conteudo no banco de dados
+        // : void por que não retornar nada
+        public function adicionar(string $titulo, string $conteudo):void
+        {
+            $insereArtigo = $this->mysql->prepare('INSERT INTO artigos (titulo, conteudo) VALUES (?,?);');
+            $insereArtigo->bind_param('ss', $titulo, $conteudo);
+            $insereArtigo->execute();
+        }
+
+        //remover conteudo do banco de dados
+        // : void por que não retornar nada
+        public function remover(string $id): void 
+        {
+            $removerArtigo = $this->mysql->prepare('DELETE FROM artigos WHERE id = ?');
+            $removerArtigo->bind_param('s', $id);
+            $removerArtigo->execute();
+        } 
+
+
+        //atualiza o conteudo do banco de dados
+        public function editar(string $id, string $titulo, string $conteudo): void
+        {
+            $editaArtigo = $this->mysql->prepare('UPDATE artigos SET titulo = ?, conteudo = ?  WHERE id = ?');
+            $editaArtigo->bind_param('sss', $titulo, $conteudo, $id);
+            $editaArtigo->execute();
+        }
+
         //Exibe todos os dados do banco.
         public function exibirTodos(): array 
         {
