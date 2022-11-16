@@ -1,6 +1,8 @@
 <?php
+    require 'config.php';
+    //require -> requer que tenha a pagina se não tiver não carrega a pagina
     include 'Artigo.php';
-    $artigo = new Artigo();
+    $artigo = new Artigo($mysql);
     $artigos = $artigo->exibirTodos();
 ?>
 
@@ -20,7 +22,7 @@
         <?php foreach($artigos as $artigo) { ?>
 
             <h2>
-                <a href="<?php echo $artigo['link'] ?>">
+                <a href="#">
                     <?php echo $artigo['titulo']; ?>
                 </a>
             </h2>
