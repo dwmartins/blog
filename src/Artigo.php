@@ -5,9 +5,11 @@
         private $mysql;
 
         public function __construct(mysqli $mysqli)
-            {
-                $this->mysql = $mysqli;
-            }
+        {
+            $this->mysql = $mysqli;
+        }
+
+        //Exibe todos os dados do banco.
         public function exibirTodos(): array 
         {
 
@@ -17,6 +19,7 @@
             return $artigos;
         }
 
+        //Encontrar o "id" do artigo no banco de dados.
         public function encontrarPorId(string $id): array
         {
             $selecionaArtigo = $this->mysql->prepare("SELECT id, titulo, conteudo FROM artigos WHERE id = ?");
