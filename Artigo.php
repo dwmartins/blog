@@ -23,7 +23,8 @@ $artigo = $obj_artigo-> encontrarPorId($_GET['id']);
         </h1>
 
         <p>
-            <?php echo $artigo['conteudo']; ?>
+            <?php echo nl2br($artigo['conteudo']); ?>
+            <!-- "nl2br" -> vai quebrar linha corretamente -->
         </p>
 
         <div>
